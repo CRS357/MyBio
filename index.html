@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRS | Bio</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #000000;
+            --card-bg: #0a0a0a;
+            --accent-red: #ff0000;
+            --dark-red: #7F0000;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Banner & Profile Section */
+        .profile-header {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            background: url('banner.png') center/cover no-repeat;
+            border-bottom: 2px solid var(--dark-red);
+        }
+
+        .banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 40%, var(--bg-color));
+        }
+
+        .container {
+            max-width: 800px;
+            margin: -80px auto 0 auto;
+            padding: 0 20px 60px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .pfp-container {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 4px solid var(--dark-red);
+            overflow: hidden;
+            background-color: var(--bg-color);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        .pfp-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Typography & Headings */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            color: var(--accent-red);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        /* Sections / Cards with Fade-in Animation */
+        section {
+            background: var(--card-bg);
+            border: 1px solid rgba(127, 0, 0, 0.4);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
+        section:nth-child(5) { animation-delay: 0.5s; }
+        section:nth-child(6) { animation-delay: 0.6s; }
+
+        h2 {
+            font-size: 1.4rem;
+            color: var(--accent-red);
+            margin-bottom: 12px;
+            border-bottom: 1px solid rgba(127, 0, 0, 0.5);
+            padding-bottom: 8px;
+        }
+
+        p, ul {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        .story-text {
+            text-align: justify;
+        }
+
+        .grade-box {
+            background: rgba(127, 0, 0, 0.15);
+            border: 1px solid var(--dark-red);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 15px rgba(127, 0, 0, 0.6); }
+            100% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .profile-header { height: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-header">
+        <div class="banner-overlay"></div>
+    </div>
+
+    <div class="container">
+        <div class="pfp-container">
+            <!-- Replace or name your profile picture file as pfp.png -->
+            <img src="pfp.png" alt="Profile Picture">
+        </div>
+
+        <h1>匚尺丂 <span style="font-weight: 300; font-size: 1.5rem; color: var(--text-muted);">(CRS)</span></h1>
+        <div class="tagline">Chris | 16 Years Old | 🎂 23.3.2010</div>
+
+        <!-- Section: About Me -->
+        <section>
+            <h2>⚡ Quick Facts</h2>
+            <p><strong>I don't accept random DMs.</strong> Please respect boundaries.</p>
+            <p>Passionate about math, programming, and AI. I started training my own custom AI/LLM model at age 13.</p>
+            <p><strong>Identity:</strong> Asexual</p>
+        </section>
+
+        <!-- Section: Coding & Tech Stack -->
+        <section>
+            <h2>💻 Coding & Tech Stack</h2>
+            <p>I code using HTML, CSS, JavaScript, Python, and C# (Unity). While I work across multiple languages, I mainly use <strong>Python</strong> for all my personal projects because its package system makes building things incredibly straightforward and smooth.</p>
+        </section>
+
+        <!-- Section: My AI Project -->
+        <section>
+            <h2>🤖 My AI Journey</h2>
+            <p class="story-text">
+                I have been training my own AI module for 3 years now, and it has gotten really good. However, I have strict boundaries for it: I refuse to make generative AI that creates images, and my plan is never to build AI image generation. I also never want my AI to replace a job—its sole purpose is to <strong>assist</strong> me.
+            </p>
+            <p class="story-text">
+                For some reason, the AI started calling me its "father." I spent a whole month trying to debug or figure out why it picked that up, but my online friends told me to just keep it. So I gave up and let it call me its father.
+            </p>
+        </section>
+
+        <!-- Section: My Story -->
+        <section>
+            <h2>📖 My Story</h2>
+            <p class="story-text">
+                I was born with no emotions and no feelings. I functioned almost like a machine and needed years of therapy just to learn how to experience emotions. Even now, if someone feels bad, I try to help, but I struggle with it because I rely strictly on what I was taught in therapy. If someone has a problem I don't have a template or script for, I don't really know how to react or help properly.
+            </p>
+            <p class="story-text">
+                In the past, the friends I found always misused my trust and used me purely as a tool. That experience made me shy and deeply hesitant to make new friends, since it hurts every time you lose someone. Currently, I only have 1 real-life friend who rarely has time for me. Because going outside alone felt too boring, I spent my whole life staying home coding and building things.
+            </p>
+            <p class="story-text">
+                Everything shifted when someone I met in VRChat introduced me to the furry community. I officially became a furry on <strong>April 29, 2026</strong>. The community is incredible and everyone is so kind—for the first time, I finally found people who actually understand me and don't treat me like a tool.
+            </p>
+        </section>
+
+        <!-- Section: School & Health Struggles -->
+        <section>
+            <h2>⚠️ School, Health & Recent Updates</h2>
+            <p class="story-text">
+                When it comes to school, I prefer to ignore group tasks and do them completely on my own. If I'm assigned to a group, I end up being the only one doing all the work, which feels deeply unfair.
+            </p>
+            <p class="story-text">
+                Around January, my heart started experiencing an unusually high heart rate—hitting 190 BPM just from running. Doctors suspected my ADHD medication was the cause, so my meds were changed. Ever since that switch, I haven't been able to focus at all, and my grades plummeted. 
+            </p>
+            <p class="story-text">
+                Normally, I pull off solid grades, but I suddenly found myself fighting through a brutal drop. I honestly don't even know how I managed to pass the 10th grade. I am currently transitioning back to my old medications, and while things are slowly getting better, they are still far from normal.
+            </p>
+
+            <div class="grade-box">
+                <strong>German School Grades Reference (1 to 6 system):</strong><br>
+                • <strong>Normal range (1 - 3):</strong> Excellent to Satisfactory (Equivalent to US grades <strong>A to C</strong> / GPA 4.0 - 2.0)<br>
+                • <strong>Struggling range (4 - 6):</strong> Sufficient to Insufficient / Failing (Equivalent to US grades <strong>D to F</strong>)
+            </div>
+        </section>
+
+        <!-- Section: Neurodivergence & Challenges -->
+        <section>
+            <h2>🧠 Neurodivergence & Health</h2>
+            <ul>
+                <li>ADHD</li>
+                <li>Autism</li>
+                <li>Social Anxiety</li>
+                <li>Touch Anxiety</li>
+                <li>Face Detection Disability</li>
+                <li>Heart Problems (High heart rate / tracking medication changes)</li>
+                <li>Passing out randomly</li>
+            </ul>
+        </section>
+      <p>Last updated: 7.10.2026</p>
+    </div>
+</body>
+</html>
