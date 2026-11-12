@@ -4,8 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRS | Bio</title>
+    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Configuration Script -->
+    <script>
+        const CONFIG = {
+            discordUserId: "968494952369782844",
+            displayName: "Dragoris",
+            bannerUrl: "https://cdn.discordapp.com/banners/968494952369782844/9096b3bd4c9d50be99a3ff55d4800c08.png?size=2048",
+            fallbackPfp: "https://cdn.discordapp.com/avatars/968494952369782844/0dd01daae0c90dc372236a8aaad76fc5.png?size=2048",
+
+            socials: [
+                { platform: "twitch", title: "Twitch", url: "https://twitch.tv/crs_gamer_357" },
+                { platform: "youtube", title: "Main YouTube", url: "https://youtube.com/@crs_gamer_357" },
+                { platform: "youtube", title: "Tech Channel", url: "https://www.youtube.com/@CKMakerLab" },
+                { platform: "discord", title: "Discord Server", url: "https://discord.gg/MDxHK3wcJq" }
+            ],
+
+            credits: [
+                {
+                    role: "Profile Picture (PFP)",
+                    artist: "@tsuyokku",
+                    links: [
+                        { platform: "link", url: "https://vgen.co/tsuyokku" }
+                    ]
+                },
+                {
+                    role: "Profile Banner",
+                    artist: "@lisafurrs",
+                    links: []
+                }
+            ]
+        };
+    </script>
+
     <style>
         :root {
             --bg-color: #000000;
@@ -40,7 +74,6 @@
             background-size: cover;
             background-repeat: no-repeat;
             border-bottom: 2px solid var(--dark-red);
-            transition: background-image 0.4s ease;
         }
 
         .banner-overlay {
@@ -74,7 +107,6 @@
             object-fit: cover;
         }
 
-        /* Typography & Headings */
         h1 {
             font-size: 2.5rem;
             font-weight: 800;
@@ -86,54 +118,65 @@
             color: var(--accent-red);
             font-weight: 600;
             font-size: 1.1rem;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
         }
 
-        /* Social Links Grid */
-        .socials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 12px;
-            margin-top: 10px;
-        }
-
-        .social-btn {
+        /* Compact Header Social Links */
+        .header-socials {
             display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .social-chip {
+            display: inline-flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            background: rgba(127, 0, 0, 0.12);
+            gap: 8px;
+            padding: 6px 12px;
+            background: rgba(127, 0, 0, 0.15);
             border: 1px solid var(--dark-red);
-            border-radius: 8px;
+            border-radius: 20px;
             color: var(--text-main);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             transition: all 0.2s ease;
         }
 
-        .social-btn:hover {
-            background: rgba(255, 0, 0, 0.2);
+        .social-chip:hover {
+            background: rgba(255, 0, 0, 0.25);
             border-color: var(--accent-red);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.25);
+            transform: translateY(-1px);
         }
 
-        .social-btn svg {
-            width: 22px;
-            height: 22px;
+        .social-chip svg {
+            width: 16px;
+            height: 16px;
             fill: var(--accent-red);
             flex-shrink: 0;
         }
 
-        .social-subtext {
-            display: block;
-            font-size: 0.78rem;
-            font-weight: 400;
-            color: var(--text-muted);
+        /* Section Headings with Icons */
+        h2 {
+            font-size: 1.4rem;
+            color: var(--accent-red);
+            margin-bottom: 12px;
+            border-bottom: 1px solid rgba(127, 0, 0, 0.5);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* Artist Credits */
+        h2 svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--accent-red);
+            flex-shrink: 0;
+        }
+
+        /* Artist Credits List */
         .credits-list {
             list-style: none;
             padding-left: 0;
@@ -152,26 +195,35 @@
             font-size: 0.95rem;
         }
 
-        .credit-info {
+        .credit-links {
             display: flex;
-            flex-direction: column;
+            gap: 6px;
+            align-items: center;
         }
 
-        .credit-platform {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .credits-list a {
-            color: var(--accent-red);
+        .artist-icon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: rgba(127, 0, 0, 0.2);
+            border: 1px solid var(--dark-red);
+            border-radius: 6px;
+            color: var(--text-main);
             text-decoration: none;
-            font-weight: 600;
+            transition: all 0.2s ease;
         }
 
-        .credits-list a:hover {
-            text-decoration: underline;
+        .artist-icon-btn:hover {
+            background: rgba(255, 0, 0, 0.3);
+            border-color: var(--accent-red);
+        }
+
+        .artist-icon-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--accent-red);
         }
 
         .credit-artist-text {
@@ -179,7 +231,7 @@
             font-weight: 600;
         }
 
-        /* Sections / Cards with Fade-in Animation */
+        /* Standard Cards */
         section {
             background: var(--card-bg);
             border: 1px solid rgba(127, 0, 0, 0.4);
@@ -199,15 +251,6 @@
         section:nth-of-type(5) { animation-delay: 0.5s; }
         section:nth-of-type(6) { animation-delay: 0.6s; }
         section:nth-of-type(7) { animation-delay: 0.7s; }
-        section:nth-of-type(8) { animation-delay: 0.8s; }
-
-        h2 {
-            font-size: 1.4rem;
-            color: var(--accent-red);
-            margin-bottom: 12px;
-            border-bottom: 1px solid rgba(127, 0, 0, 0.5);
-            padding-bottom: 8px;
-        }
 
         p, ul {
             color: var(--text-muted);
@@ -239,7 +282,6 @@
             color: var(--text-main);
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             to {
                 opacity: 1;
@@ -252,7 +294,6 @@
             100% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); }
         }
 
-        /* Responsive */
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
             .profile-header { height: 200px; }
@@ -261,6 +302,7 @@
 </head>
 <body>
 
+    <!-- Header & Profile Information -->
     <div class="profile-header" id="discord-banner">
         <div class="banner-overlay"></div>
     </div>
@@ -273,29 +315,35 @@
         <h1><span id="discord-name">Dragoris</span> <span style="font-weight: 300; font-size: 1.5rem; color: var(--text-muted);">(CRS)</span></h1>
         <div class="tagline">Chris | 16 Years Old | 🎂 23.3.2010</div>
 
-        <!-- Section: Socials & Links -->
-        <section>
-            <h2>🔗 Socials & Community</h2>
-            <div class="socials-grid" id="socials-container"></div>
-        </section>
+        <!-- Header Compact Social Links Container -->
+        <div class="header-socials" id="socials-container"></div>
 
-        <!-- Section: About Me -->
+        <!-- About Me Section -->
         <section>
-            <h2>⚡ Quick Facts</h2>
+            <h2>
+                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8zm1-13h-2v6h6v-2h-4z"/></svg>
+                Quick Facts
+            </h2>
             <p><strong>I don't accept random DMs.</strong> Please respect boundaries.</p>
             <p>Passionate about math, programming, and AI. I started training my own custom AI/LLM model at age 13.</p>
             <p><strong>Identity:</strong> Asexual</p>
         </section>
 
-        <!-- Section: Coding & Tech Stack -->
+        <!-- Coding & Tech Stack Section -->
         <section>
-            <h2>💻 Coding & Tech Stack</h2>
+            <h2>
+                <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 14H4V6h16zM6 10h2v2H6zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
+                Coding & Tech Stack
+            </h2>
             <p>I code using HTML, CSS, JavaScript, Python, and C# (Unity). While I work across multiple languages, I mainly use <strong>Python</strong> for all my personal projects because its package system makes building things incredibly straightforward and smooth.</p>
         </section>
 
-        <!-- Section: My AI Project -->
+        <!-- AI Journey Section -->
         <section>
-            <h2>🤖 My AI Journey</h2>
+            <h2>
+                <svg viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2v1h1a3 3 0 0 1 3 3v1h1a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1V8a3 3 0 0 1 3-3h1V4a2 2 0 0 1 2-2m0 2H10v1h4V4m-6 6H6v7h2zm8 0h-2v7h2zm-4-3H9v10h6z"/></svg>
+                My AI Journey
+            </h2>
             <p class="story-text">
                 I have been training my own AI module for 3 years now, and it has gotten really good. However, I have strict boundaries for it: I refuse to make generative AI that creates images, and my plan is never to build AI image generation. I also never want my AI to replace a job—its sole purpose is to <strong>assist</strong> me.
             </p>
@@ -304,9 +352,12 @@
             </p>
         </section>
 
-        <!-- Section: My Story -->
+        <!-- Personal Story Section -->
         <section>
-            <h2>📖 My Story</h2>
+            <h2>
+                <svg viewBox="0 0 24 24"><path d="M19 2H9a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h10a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zm-1 17H9a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h9z"/></svg>
+                My Story
+            </h2>
             <p class="story-text">
                 I was born with no emotions and no feelings. I functioned almost like a machine and needed years of therapy just to learn how to experience emotions. Even now, if someone feels bad, I try to help, but I struggle with it because I rely strictly on what I was taught in therapy. If someone has a problem I don't have a template or script for, I don't really know how to react or help properly.
             </p>
@@ -318,9 +369,12 @@
             </p>
         </section>
 
-        <!-- Section: School & Health Struggles -->
+        <!-- School & Health Section -->
         <section>
-            <h2>⚠️ School, Health & Recent Updates</h2>
+            <h2>
+                <svg viewBox="0 0 24 24"><path d="M12 2L1 21h22M12 6l7.53 13H4.47M11 10v4h2v-4m-2 6v2h2v-2"/></svg>
+                School, Health & Recent Updates
+            </h2>
             <p class="story-text">
                 When it comes to school, I prefer to ignore group tasks and do them completely on my own. If I'm assigned to a group, I end up being the only one doing all the work, which feels deeply unfair.
             </p>
@@ -338,9 +392,12 @@
             </div>
         </section>
 
-        <!-- Section: Neurodivergence & Challenges -->
+        <!-- Neurodivergence & Health Section -->
         <section>
-            <h2>🧠 Neurodivergence & Health</h2>
+            <h2>
+                <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9c0 4.42 3.28 8.09 7.5 8.87v-2.07A7.001 7.001 0 0 1 5 12a7 7 0 1 1 14 0 7.001 7.001 0 0 1-3.5 6.8v2.07C19.71 20.09 23 16.42 23 12a9 9 0 0 0-9-9z"/></svg>
+                Neurodivergence & Health
+            </h2>
             <ul>
                 <li>ADHD</li>
                 <li>Autism</li>
@@ -352,74 +409,20 @@
             </ul>
         </section>
 
-        <!-- Section: Art Credits -->
+        <!-- Art Credits Section -->
         <section>
-            <h2>🎨 Art & Asset Credits</h2>
+            <h2>
+                <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 20.3a1 1 0 0 0 1.35 1.35l2.69-1.62A8.959 8.959 0 0 0 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z"/></svg>
+                Art & Asset Credits
+            </h2>
             <ul class="credits-list" id="credits-container"></ul>
         </section>
 
         <p>Last updated: 7.10.2026</p>
     </div>
 
+    <!-- Application Logic Script -->
     <script>
-        // ==========================================
-        // 🛠️ EASY CONFIGURATION (EDIT THIS SECTION)
-        // ==========================================
-        const CONFIG = {
-            // 1. Discord User ID & Fallbacks
-            discordUserId: "968494952369782844",
-            displayName: "Dragoris",
-            bannerUrl: "https://cdn.discordapp.com/banners/968494952369782844/9096b3bd4c9d50be99a3ff55d4800c08.png?size=2048",
-            fallbackPfp: "https://cdn.discordapp.com/avatars/968494952369782844/0dd01daae0c90dc372236a8aaad76fc5.png?size=2048",
-
-            // 2. Social Links
-            socials: [
-                {
-                    platform: "twitch",
-                    title: "Twitch",
-                    subtitle: "Live Streams",
-                    url: "https://twitch.tv/crs_gamer_357"
-                },
-                {
-                    platform: "youtube",
-                    title: "CRS Gamer 357",
-                    subtitle: "Main Channel",
-                    url: "https://youtube.com/@crs_gamer_357"
-                },
-                {
-                    platform: "youtube",
-                    title: "CK Maker Lab",
-                    subtitle: "My Tech Channel :3",
-                    url: "https://www.youtube.com/@CKMakerLab"
-                },
-                {
-                    platform: "discord",
-                    title: "My Discord Server",
-                    subtitle: "Join the Community",
-                    url: "https://discord.gg/MDxHK3wcJq"
-                }
-            ],
-
-            // 3. Art Credits (Set url to "none" if you don't want a link)
-            credits: [
-                { 
-                    role: "Profile Picture (PFP)", 
-                    artist: "@tsuyokku", 
-                    platform: "Discord", 
-                    url: "https://vgen.co/tsuyokku" 
-                },
-                { 
-                    role: "Profile Banner", 
-                    artist: "@lisafurrs", 
-                    platform: "Discord", 
-                    url: "none" 
-                }
-            ]
-        };
-
-        // ==========================================
-        // ⚙️ RENDER LOGIC (NO NEED TO EDIT BELOW)
-        // ==========================================
         const ICONS = {
             twitch: `<svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>`,
             youtube: `<svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`,
@@ -429,13 +432,13 @@
             link: `<svg viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>`
         };
 
-        // Apply Static Name & Banner Config
+        // Render Header & Banner
         document.getElementById("discord-name").textContent = CONFIG.displayName;
         if (CONFIG.bannerUrl) {
             document.getElementById("discord-banner").style.backgroundImage = `url('${CONFIG.bannerUrl}')`;
         }
 
-        // Render Social Links
+        // Render Header Compact Socials
         const socialsContainer = document.getElementById("socials-container");
         CONFIG.socials.forEach(item => {
             const iconSvg = ICONS[item.platform.toLowerCase()] || ICONS.link;
@@ -443,40 +446,37 @@
             a.href = item.url;
             a.target = "_blank";
             a.rel = "noopener noreferrer";
-            a.className = "social-btn";
-            a.innerHTML = `
-                ${iconSvg}
-                <div>
-                    <div>${item.title}</div>
-                    ${item.subtitle ? `<span class="social-subtext">${item.subtitle}</span>` : ""}
-                </div>
-            `;
+            a.className = "social-chip";
+            a.innerHTML = `${iconSvg} <span>${item.title}</span>`;
             socialsContainer.appendChild(a);
         });
 
-        // Render Art Credits (Supports url: "none" and platform tags)
+        // Render Art Credits with Multiple Links
         const creditsContainer = document.getElementById("credits-container");
         CONFIG.credits.forEach(credit => {
             const li = document.createElement("li");
             
-            let artistContent = "";
-            if (!credit.url || credit.url.toLowerCase() === "none") {
-                artistContent = `<span class="credit-artist-text">${credit.artist}</span>`;
-            } else {
-                artistContent = `<a href="${credit.url}" target="_blank" rel="noopener noreferrer">${credit.artist}</a>`;
-            }
+            let linksHtml = '';
+            credit.links.forEach(l => {
+                const iconSvg = ICONS[l.platform.toLowerCase()] || ICONS.link;
+                if (!l.url || l.url.toLowerCase() === "none") {
+                    linksHtml += `<span class="artist-icon-btn" style="opacity: 0.5; cursor: not-allowed;" title="No link available">${iconSvg}</span>`;
+                } else {
+                    linksHtml += `<a href="${l.url}" target="_blank" rel="noopener noreferrer" class="artist-icon-btn" title="${l.platform}">${iconSvg}</a>`;
+                }
+            });
 
             li.innerHTML = `
                 <span>${credit.role}</span>
-                <div class="credit-info" style="text-align: right;">
-                    ${credit.platform ? `<span class="credit-platform">${credit.platform}</span>` : ""}
-                    ${artistContent}
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span class="credit-artist-text">${credit.artist}</span>
+                    <div class="credit-links">${linksHtml}</div>
                 </div>
             `;
             creditsContainer.appendChild(li);
         });
 
-        // Fetch Live Discord PFP via Lanyard
+        // Fetch Live Discord Profile Picture via Lanyard
         async function loadDiscordPfp() {
             const pfpEl = document.getElementById("discord-pfp");
             pfpEl.src = CONFIG.fallbackPfp;
@@ -495,7 +495,7 @@
                     }
                 }
             } catch (err) {
-                console.warn("Could not fetch live Discord PFP, using fallback:", err);
+                console.warn("Could not fetch live Discord PFP, using fallback.");
             }
         }
 
