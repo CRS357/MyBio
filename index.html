@@ -144,12 +144,24 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 12px;
+            padding: 10px 14px;
             background: rgba(255, 255, 255, 0.02);
             border-left: 3px solid var(--dark-red);
             border-radius: 4px;
             margin-bottom: 8px;
             font-size: 0.95rem;
+        }
+
+        .credit-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .credit-platform {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .credits-list a {
@@ -160,6 +172,11 @@
 
         .credits-list a:hover {
             text-decoration: underline;
+        }
+
+        .credit-artist-text {
+            color: var(--text-main);
+            font-weight: 600;
         }
 
         /* Sections / Cards with Fade-in Animation */
@@ -253,7 +270,7 @@
             <img id="discord-pfp" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Profile Picture">
         </div>
 
-        <h1><span id="discord-name">匚尺丂</span> <span style="font-weight: 300; font-size: 1.5rem; color: var(--text-muted);">(CRS)</span></h1>
+        <h1><span id="discord-name">Dragoris</span> <span style="font-weight: 300; font-size: 1.5rem; color: var(--text-muted);">(CRS)</span></h1>
         <div class="tagline">Chris | 16 Years Old | 🎂 23.3.2010</div>
 
         <!-- Section: Socials & Links -->
@@ -349,16 +366,13 @@
         // 🛠️ EASY CONFIGURATION (EDIT THIS SECTION)
         // ==========================================
         const CONFIG = {
-            // 1. Put your Discord User ID here (Must be in discord.gg/lanyard for Lanyard to work)
+            // 1. Discord User ID & Fallbacks
             discordUserId: "968494952369782844",
+            displayName: "Dragoris",
+            bannerUrl: "https://cdn.discordapp.com/banners/968494952369782844/9096b3bd4c9d50be99a3ff55d4800c08.png",
+            fallbackPfp: "https://cdn.discordapp.com/avatars/968494952369782844/0dd01daae0c90dc372236a8aaad76fc5.png",
 
-            // Fallback images/name if Discord API is unreachable or you don't have Nitro banner
-            fallbackName: "Dragoris",
-            fallbackPfp: "https://cdn.discordapp.com/embed/avatars/0.png",
-            fallbackBanner: "", // Optional: URL to a fallback image if you don't have a Discord banner
-
-            // 2. Social Links (Copy/paste any block to add more platforms!)
-            // Supported icons: 'twitch', 'youtube', 'discord', 'github', 'twitter', 'link'
+            // 2. Social Links
             socials: [
                 {
                     platform: "twitch",
@@ -386,10 +400,20 @@
                 }
             ],
 
-            // 3. Art Credits (Copy/paste any line to credit new artists!)
+            // 3. Art Credits (Set url to "none" if you don't want a link)
             credits: [
-                { role: "Profile Picture (PFP)", artist: "@tsuyokku", url: "https://crs357.github.io/MyBio/" },
-                { role: "Profile Banner", artist: "@lisafurrs", url: "https://crs357.github.io/MyBio/" }
+                { 
+                    role: "Profile Picture (PFP)", 
+                    artist: "@tsuyokku", 
+                    platform: "Discord", 
+                    url: "none" 
+                },
+                { 
+                    role: "Profile Banner", 
+                    artist: "@lisafurrs", 
+                    platform: "Discord", 
+                    url: "none" 
+                }
             ]
         };
 
@@ -404,6 +428,12 @@
             twitter: `<svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`,
             link: `<svg viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>`
         };
+
+        // Apply Static Name & Banner Config
+        document.getElementById("discord-name").textContent = CONFIG.displayName;
+        if (CONFIG.bannerUrl) {
+            document.getElementById("discord-banner").style.backgroundImage = `url('${CONFIG.bannerUrl}')`;
+        }
 
         // Render Social Links
         const socialsContainer = document.getElementById("socials-container");
@@ -424,71 +454,52 @@
             socialsContainer.appendChild(a);
         });
 
-        // Render Art Credits
+        // Render Art Credits (Supports url: "none" and platform tags)
         const creditsContainer = document.getElementById("credits-container");
         CONFIG.credits.forEach(credit => {
             const li = document.createElement("li");
-            const artistHtml = credit.url 
-                ? `<a href="${credit.url}" target="_blank" rel="noopener noreferrer">${credit.artist}</a>` 
-                : `<span>${credit.artist}</span>`;
-            li.innerHTML = `<span>${credit.role}</span> ${artistHtml}`;
+            
+            let artistContent = "";
+            if (!credit.url || credit.url.toLowerCase() === "none") {
+                artistContent = `<span class="credit-artist-text">${credit.artist}</span>`;
+            } else {
+                artistContent = `<a href="${credit.url}" target="_blank" rel="noopener noreferrer">${credit.artist}</a>`;
+            }
+
+            li.innerHTML = `
+                <span>${credit.role}</span>
+                <div class="credit-info" style="text-align: right;">
+                    ${credit.platform ? `<span class="credit-platform">${credit.platform}</span>` : ""}
+                    ${artistContent}
+                </div>
+            `;
             creditsContainer.appendChild(li);
         });
 
-        // Fetch Discord Profile (Display Name, PFP, Banner)
-        async function loadDiscordProfile() {
+        // Fetch Live Discord PFP via Lanyard
+        async function loadDiscordPfp() {
             const pfpEl = document.getElementById("discord-pfp");
-            const nameEl = document.getElementById("discord-name");
-            const bannerEl = document.getElementById("discord-banner");
-
-            // Set initial fallbacks
             pfpEl.src = CONFIG.fallbackPfp;
-            nameEl.textContent = CONFIG.fallbackName;
-            if (CONFIG.fallbackBanner) {
-                bannerEl.style.backgroundImage = `url('${CONFIG.fallbackBanner}')`;
-            }
 
-            if (!CONFIG.discordUserId || CONFIG.discordUserId === "YOUR_DISCORD_USER_ID_HERE") return;
+            if (!CONFIG.discordUserId) return;
 
             try {
-                // 1. Fetch Display Name & Avatar from Lanyard
-                const lanyardRes = await fetch(`https://api.lanyard.rest/v1/users/${CONFIG.discordUserId}`);
-                const lanyardJson = await lanyardRes.json();
+                const res = await fetch(`https://api.lanyard.rest/v1/users/${CONFIG.discordUserId}`);
+                const data = await res.json();
 
-                if (lanyardJson.success && lanyardJson.data && lanyardJson.data.discord_user) {
-                    const user = lanyardJson.data.discord_user;
-                    
-                    // Update Display Name (falls back to username if no display name is set)
-                    nameEl.textContent = user.global_name || user.username;
-
-                    // Update Avatar (supports animated GIFs automatically)
+                if (data.success && data.data && data.data.discord_user) {
+                    const user = data.data.discord_user;
                     if (user.avatar) {
                         const ext = user.avatar.startsWith("a_") ? "gif" : "png";
                         pfpEl.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${ext}?size=512`;
                     }
                 }
-
-                // 2. Fetch Banner & Accent Color from dcdn.dstn.to (Lanyard doesn't expose banners)
-                const profileRes = await fetch(`https://dcdn.dstn.to/profile/${CONFIG.discordUserId}`);
-                if (profileRes.ok) {
-                    const profileData = await profileRes.json();
-                    if (profileData.user) {
-                        if (profileData.user.banner) {
-                            const bExt = profileData.user.banner.startsWith("a_") ? "gif" : "png";
-                            bannerEl.style.backgroundImage = `url('https://cdn.discordapp.com/banners/${CONFIG.discordUserId}/${profileData.user.banner}.${bExt}?size=1024')`;
-                        } else if (profileData.user.accent_color && !CONFIG.fallbackBanner) {
-                            // If you don't have a Nitro banner image, use your Discord profile banner color
-                            const hexColor = `#${profileData.user.accent_color.toString(16).padStart(6, '0')}`;
-                            bannerEl.style.backgroundColor = hexColor;
-                        }
-                    }
-                }
             } catch (err) {
-                console.warn("Could not fetch Discord profile, using fallbacks:", err);
+                console.warn("Could not fetch live Discord PFP, using fallback:", err);
             }
         }
 
-        loadDiscordProfile();
+        loadDiscordPfp();
     </script>
 </body>
 </html>
